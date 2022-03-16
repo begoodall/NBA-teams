@@ -1,3 +1,5 @@
+## Note: Designed for Desktop viewing!
+
 ## Deployed Link to Project:
 [http://52.53.209.15/](http://52.53.209.15/)\
 Deployed using AWS.
