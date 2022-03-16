@@ -1,6 +1,11 @@
 ## Scripts
 
-In the project directory, you can run either:
+In the project directory, you can run:
+
+### `npm install`
+*REQUIRED*
+
+Installs the necessary packages to run the app.
 
 ### `npm run build`
 *RECOMMENDED*
