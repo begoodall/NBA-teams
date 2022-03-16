@@ -1,3 +1,6 @@
+## Deployed Link to Project:
+[http://52.53.209.15/](http://52.53.209.15/) to view it in your browser.
+
 ## Scripts
 
 In the project directory, you can run:
