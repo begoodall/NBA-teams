@@ -3,6 +3,7 @@
 <br />
 
 ## Deployed Link to Project:
+To open in new tab: `cmd + click` || `ctrl + click`
 [http://52.53.209.15/](http://52.53.209.15/)\
 Deployed using AWS.
 <br />
