@@ -8,14 +8,15 @@ To open in new tab: `cmd + click`  //  `ctrl + click`\
 Deployed using AWS EC2.
 <br />
 
-## Scripts
+## Scripts to run on your local machine:
 
-In the project directory, you can run:
+### First, clone the repo.
+Then in the project directory, run:
 
 ### `npm install`
 ***REQUIRED***
 
-Installs the necessary packages to run the app.
+Install the necessary packages to run the app.
 
 ### `npm run build`
 *recommended*
