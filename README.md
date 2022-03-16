@@ -1,10 +1,6 @@
 # NBA Teams (Alkira Project)
-#### Note: Designed for Desktop viewing!
-
-
-
-
-
+#### *note: Designed for Desktop viewing!*
+<br>
 
 ## Deployed Link to Project:
 [http://52.53.209.15/](http://52.53.209.15/)\
@@ -15,12 +11,12 @@ Deployed using AWS.
 In the project directory, you can run:
 
 ### `npm install`
-*REQUIRED*
+**REQUIRED**
 
 Installs the necessary packages to run the app.
 
 ### `npm run build`
-*RECOMMENDED*
+*recommended*
 
 Builds the app for production to the `build` folder.\
 After it builds, run `serve -s build` and past the link in your browser.
