@@ -1,5 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import Table from 'react-bootstrap/Table'
 
 
@@ -15,7 +16,7 @@ const App = () => {
   const [displayedTeamData, setDisplayedTeams] = useState([]);
   const [citySortAlphabetical, setCitySortAlphabetical] = useState(true);
   const [displayInfoPanel, setDisplayInfoPanel] = useState(false);
-  const [infoPanelTeam, setInfoPanelTeam] = useState({});
+  const [infoPanelTeam, setInfoPanelTeam] = useState({ id: 1 });
 
   useEffect(() => {
     const getNbaData = async () => {
@@ -71,7 +72,14 @@ const App = () => {
   return nbaTeamData.length ? (
     <div>
       <h1 className='heading'>NBA TEAMS</h1>
-      <SearchBar handleSearch={handleSearch} />
+      <SearchBar handleSearch={handleSearch}/>
+      {/* <TeamsList2
+        teams={displayedTeamData}
+        citySortAlphabetical={citySortAlphabetical}
+        handleTeamClick={handleTeamClick}
+        handleCitySort={handleCitySort}
+      /> */}
+
       <section>
         <Table borderless hover>
           <thead className='nba-table-header'>
@@ -96,7 +104,7 @@ const App = () => {
       </section>
       <InfoPanel
         displayPanel={displayInfoPanel}
-        teamInfo={infoPanelTeam}
+        team={infoPanelTeam}
         handleInfoPanelClose={handleInfoPanelClose}
       />
     </div>
