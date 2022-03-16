@@ -101,3 +101,8 @@
 .info-panel-bold {
   font-weight: bold;
 }
+
+.active {
+  background-color: #074684;
+  color: white;
+}

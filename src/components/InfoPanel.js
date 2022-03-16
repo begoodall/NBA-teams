@@ -27,7 +27,7 @@ export default function InfoPanel({ displayPanel, team, handleInfoPanelClose }) 
       document.body.style.overflow = 'auto';
       ReactDOM.unmountComponentAtNode(document.getElementById('modal-root'));
     }
-  }, [displayPanel]);
+  }, [displayPanel, handleInfoPanelClose]);
 
   return Object.keys(gameData).length ? (
       <div className={displayPanel ? "info-panel active" : "info-panel"}>

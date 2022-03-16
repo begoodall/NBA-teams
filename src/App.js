@@ -1,14 +1,9 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import Table from 'react-bootstrap/Table'
-
-
 import SearchBar from './components/SearchBar';
 import TeamsList from './components/TeamsList';
 import searchFilterCheck from './helpers/appHelper';
 import InfoPanel from './components/InfoPanel';
-import Caret from './components/Caret';
 
 
 const App = () => {
@@ -17,27 +12,45 @@ const App = () => {
   const [citySortAlphabetical, setCitySortAlphabetical] = useState(true);
   const [displayInfoPanel, setDisplayInfoPanel] = useState(false);
   const [infoPanelTeam, setInfoPanelTeam] = useState({ id: 1 });
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const getNbaData = async () => {
       const response = await fetch('https://www.balldontlie.io/api/v1/teams');
       const { data } = await response.json();
-      setDisplayedTeams(data);
       setNbaTeamData(data);
     }
     getNbaData();
   }, []);
 
+  useEffect(() => {
+    const getPageData = async () => {
+      const response = await fetch(`https://www.balldontlie.io/api/v1/teams?page=${page}&per_page=7`);
+      const { data } = await response.json();
+      setDisplayedTeams(data);
+    }
+    getPageData();
+  }, [page]);
+
+  const handlePagination = (page) => {
+    setPage(page);
+  }
+
   const handleSearch = (str) => {
     if (!str) {
-      setDisplayedTeams(nbaTeamData);
+      const firstPage = fetch(`https://www.balldontlie.io/api/v1/teams?page=1&per_page=7`);
+      firstPage.then((res) => {
+        return res.json();
+      }).then(({ data }) => {
+        setDisplayedTeams(data);
+      });
       return;
     }
 
     const filteredList = nbaTeamData.filter(team => searchFilterCheck(team, str));
 
     if (filteredList.length > 0) {
-      setDisplayedTeams(filteredList)
+      setDisplayedTeams(filteredList);
     } else {
       setDisplayedTeams([{
         id: '',
@@ -73,35 +86,14 @@ const App = () => {
     <div>
       <h1 className='heading'>NBA TEAMS</h1>
       <SearchBar handleSearch={handleSearch}/>
-      {/* <TeamsList2
+      <TeamsList
         teams={displayedTeamData}
         citySortAlphabetical={citySortAlphabetical}
+        page={page}
         handleTeamClick={handleTeamClick}
         handleCitySort={handleCitySort}
-      /> */}
-
-      <section>
-        <Table borderless hover>
-          <thead className='nba-table-header'>
-            <tr>
-              <th>Team Name</th>
-              <th onClick={() => handleCitySort()} style={{cursor: 'pointer'}}>
-                City
-                <Caret alphabeticalSort={citySortAlphabetical}/>
-              </th>
-              <th>Abbreviation</th>
-              <th>Conference</th>
-              <th>Division</th>
-            </tr>
-          </thead>
-          <tbody>
-            <TeamsList
-              teams={displayedTeamData}
-              handleTeamClick={handleTeamClick}
-            />
-          </tbody>
-        </Table>
-      </section>
+        handlePagination={handlePagination}
+      />
       <InfoPanel
         displayPanel={displayInfoPanel}
         team={infoPanelTeam}
