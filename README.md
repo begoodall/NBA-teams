@@ -1,11 +1,11 @@
 # NBA Teams (Alkira Project)
 #### *note: Designed for Desktop viewing!*
-<br>
+<br />
 
 ## Deployed Link to Project:
 [http://52.53.209.15/](http://52.53.209.15/)\
 Deployed using AWS.
-<br>
+<br />
 
 ## Scripts
 
