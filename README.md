@@ -2,7 +2,8 @@
 
 In the project directory, you can run either:
 
-### `npm run build` *RECOMMENDED*
+### `npm run build`
+*RECOMMENDED*
 
 Builds the app for production to the `build` folder.\
 After it builds, run `serve -s build` and past the link in your browser.
