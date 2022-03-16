@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export default function Caret({ alphabeticalSort }) {
   let caret = alphabeticalSort ? '▼' : '▲';
   return (
@@ -5,4 +7,8 @@ export default function Caret({ alphabeticalSort }) {
       {caret}
     </span>
   )
+}
+
+Caret.propTypes = {
+  alphabeticalSort: PropTypes.bool.isRequired,
 }

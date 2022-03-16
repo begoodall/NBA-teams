@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import TableFooter from './TableFooter';
 import Table from "react-bootstrap/Table";
 import Team from "./Team";
@@ -38,4 +39,14 @@ export default function TeamsList({ teams, citySortAlphabetical, page, handleTea
       />
     </section>
   );
+}
+
+TeamsList.propTypes = {
+  teams: PropTypes.array.isRequired,
+  citySortAlphabetical: PropTypes.bool.isRequired,
+  page: PropTypes.number.isRequired,
+  handleTeamClick: PropTypes.func.isRequired,
+  handleCitySort: PropTypes.func.isRequired,
+  handlePagination: PropTypes.func.isRequired,
+  disablePages: PropTypes.bool.isRequired,
 }

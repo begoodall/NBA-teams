@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import useGameInfo from '../helpers/hooks/useGameInfo';
 import ReactDOM from 'react-dom';
 import Table from 'react-bootstrap/Table';
@@ -8,10 +9,8 @@ export default function InfoPanel({ displayPanel, team, handleInfoPanelClose }) 
 
   useEffect(() => {
     if (displayPanel) {
-      document.body.style.overflow = 'hidden';
       ReactDOM.render(<div className="modal-overlay" onClick={() => handleInfoPanelClose()}></div>, document.getElementById('modal-root'))
     } else {
-      document.body.style.overflow = 'auto';
       ReactDOM.unmountComponentAtNode(document.getElementById('modal-root'));
     }
   }, [displayPanel, handleInfoPanelClose]);
@@ -60,4 +59,10 @@ export default function InfoPanel({ displayPanel, team, handleInfoPanelClose }) 
         </Table>
     </div>
   );
+}
+
+InfoPanel.propTypes = {
+  displayPanel: PropTypes.bool.isRequired,
+  team: PropTypes.object.isRequired,
+  handleInfoPanelClose: PropTypes.func.isRequired,
 }

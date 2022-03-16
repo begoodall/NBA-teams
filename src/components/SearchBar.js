@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export default function SearchBar({ handleSearch }) {
   return (
     <input
@@ -7,4 +9,8 @@ export default function SearchBar({ handleSearch }) {
       placeholder="Search for a team"
     />
   );
+}
+
+SearchBar.propTypes = {
+  handleSearch: PropTypes.func.isRequired,
 }

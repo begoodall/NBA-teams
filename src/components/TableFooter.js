@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export default function TableFooter({ page, range, handlePagination, disablePages }) {
   if (disablePages) return null;
   return (
@@ -16,4 +18,11 @@ export default function TableFooter({ page, range, handlePagination, disablePage
       })}
     </div>
   );
+}
+
+TableFooter.propTypes = {
+  page: PropTypes.number.isRequired,
+  range: PropTypes.array.isRequired,
+  handlePagination: PropTypes.func.isRequired,
+  disablePages: PropTypes.bool.isRequired,
 }

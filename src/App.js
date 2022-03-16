@@ -7,7 +7,7 @@ import InfoPanel from './components/InfoPanel';
 import usePages from './helpers/hooks/usePages';
 
 
-const App = () => {
+export default function App() {
   const [nbaTeamData, setNbaTeamData] = useState([]);
   const [displayedTeamData, setDisplayedTeams] = useState([]);
   const [citySortAlphabetical, setCitySortAlphabetical] = useState(true);
@@ -50,7 +50,7 @@ const App = () => {
     } else {
       setDisplayedTeams([{
         id: '',
-        name: 'No results found',
+        name: 'N/A',
         city: '',
         abbreviation: '',
         conference: '',
@@ -97,5 +97,3 @@ const App = () => {
     </div>
   ) : null;
 }
-
-export default App;

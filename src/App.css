@@ -69,24 +69,24 @@
 }
 
 .modal-overlay {
-  position: absolute;
-  top: -100%;
-  left: -100%;
+  position: fixed;
+  top: 0;
+  left: 0;
   right: 0;
-  bottom: -100%;
+  bottom: 0;
   background-color: rgba(0, 0, 0, .7);
-  z-Index: 1000;
+  z-Index: 1;
 }
 
 .info-panel {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: -100%;
   width: 40%;
   min-height: 100%;
   background-color: white;
   transition: 850ms;
-  z-index: 1001;
+  z-index: 2;
 }
 
 .info-panel.active{
