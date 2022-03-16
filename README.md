@@ -12,7 +12,7 @@ Deployed using AWS.
 In the project directory, you can run:
 
 ### `npm install`
-**REQUIRED**
+***REQUIRED***
 
 Installs the necessary packages to run the app.
 
