@@ -20,7 +20,7 @@ Installs the necessary packages to run the app.
 *recommended*
 
 Builds the app for production to the `build` folder.\
-After it builds, run `serve -s build` and past the link in your browser.
+After it builds, run `serve -s build` and paste the link in your browser.
 
 ### `npm start`
 
