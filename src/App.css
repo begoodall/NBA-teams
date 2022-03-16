@@ -29,6 +29,26 @@
   background-color: rgb(248,251,253);
 }
 
+.table-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.page-btn {
+  color: white;
+  background-color: #074684;
+  width: 30px;
+  height: 28px;
+  border: none;
+  border-radius: 5px;
+  margin: 6px;
+
+}
+
+.page-btn:disabled {
+  background-color: #18293d;
+}
+
 .searchbar {
   width: 50%;
   height: 60px;
@@ -50,10 +70,10 @@
 
 .modal-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -100%;
+  left: -100%;
   right: 0;
-  bottom: 0;
+  bottom: -100%;
   background-color: rgba(0, 0, 0, .7);
   z-Index: 1000;
 }
@@ -63,7 +83,7 @@
   top: 0;
   right: -100%;
   width: 40%;
-  height: 100%;
+  min-height: 100%;
   background-color: white;
   transition: 850ms;
   z-index: 1001;
@@ -71,7 +91,7 @@
 
 .info-panel.active{
   right: 0;
-  transition: 350ms
+  transition: 500ms
 }
 
 .info-panel-header {
@@ -100,9 +120,4 @@
 
 .info-panel-bold {
   font-weight: bold;
-}
-
-.active {
-  background-color: #074684;
-  color: white;
 }

@@ -1,23 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import useGameInfo from '../helpers/hooks/useGameInfo';
 import ReactDOM from 'react-dom';
 import Table from 'react-bootstrap/Table';
 
 export default function InfoPanel({ displayPanel, team, handleInfoPanelClose }) {
-  const [gameData, setGameData] = useState({});
-  const [gamesPlayed, setGamesPlayed] = useState(0);
-  useEffect(() => {
-    const getGameData = async () => {
-      try {
-        const response = await fetch(`https://www.balldontlie.io/api/v1/games?seasons[]=2021&team_ids[]=${team.id}&per_page=100`);
-        const { data } = await response.json();
-        setGamesPlayed(data.length);
-        setGameData(data[data.length - 1]);
-      } catch(err) {
-        console.error(err);
-      }
-    }
-    getGameData();
-  }, [team]);
+  const [gameData, gamesPlayed] = useGameInfo(team.id);
 
   useEffect(() => {
     if (displayPanel) {
@@ -29,7 +16,8 @@ export default function InfoPanel({ displayPanel, team, handleInfoPanelClose }) 
     }
   }, [displayPanel, handleInfoPanelClose]);
 
-  return Object.keys(gameData).length ? (
+  if (Object.keys(gameData).length === 0) return null;
+  return (
       <div className={displayPanel ? "info-panel active" : "info-panel"}>
         <div className="info-panel-header">
           <h1>{team.name}</h1>
@@ -71,5 +59,5 @@ export default function InfoPanel({ displayPanel, team, handleInfoPanelClose }) 
           </tbody>
         </Table>
     </div>
-  ) : null;
+  );
 }

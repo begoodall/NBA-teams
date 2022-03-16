@@ -2,8 +2,9 @@ import './App.css';
 import { useState, useEffect } from 'react';
 import SearchBar from './components/SearchBar';
 import TeamsList from './components/TeamsList';
-import searchFilterCheck from './helpers/appHelper';
+import searchFilterCheck from './helpers/searchBarFilter';
 import InfoPanel from './components/InfoPanel';
+import usePages from './helpers/hooks/usePages';
 
 
 const App = () => {
@@ -12,41 +13,36 @@ const App = () => {
   const [citySortAlphabetical, setCitySortAlphabetical] = useState(true);
   const [displayInfoPanel, setDisplayInfoPanel] = useState(false);
   const [infoPanelTeam, setInfoPanelTeam] = useState({ id: 1 });
-  const [page, setPage] = useState(1);
+  const [page, setPage, disablePages, setDisablePages] = usePages(setDisplayedTeams, setCitySortAlphabetical);
 
   useEffect(() => {
     const getNbaData = async () => {
-      const response = await fetch('https://www.balldontlie.io/api/v1/teams');
-      const { data } = await response.json();
-      setNbaTeamData(data);
+      try {
+        const response = await fetch('https://www.balldontlie.io/api/v1/teams');
+        const { data } = await response.json();
+        setNbaTeamData(data);
+      } catch(err) {
+        throw err;
+      }
     }
     getNbaData();
   }, []);
 
-  useEffect(() => {
-    const getPageData = async () => {
-      const response = await fetch(`https://www.balldontlie.io/api/v1/teams?page=${page}&per_page=7`);
-      const { data } = await response.json();
-      setDisplayedTeams(data);
-    }
-    getPageData();
-  }, [page]);
-
   const handlePagination = (page) => {
-    setPage(page);
+    if (!disablePages) {
+      setPage(page);
+    }
   }
 
   const handleSearch = (str) => {
     if (!str) {
-      const firstPage = fetch(`https://www.balldontlie.io/api/v1/teams?page=1&per_page=7`);
-      firstPage.then((res) => {
-        return res.json();
-      }).then(({ data }) => {
-        setDisplayedTeams(data);
-      });
+      setPage(1);
+      setCitySortAlphabetical(true);
+      setDisablePages(false);
       return;
     }
 
+    setDisablePages(true);
     const filteredList = nbaTeamData.filter(team => searchFilterCheck(team, str));
 
     if (filteredList.length > 0) {
@@ -78,9 +74,7 @@ const App = () => {
     setDisplayInfoPanel(true);
   }
 
-  const handleInfoPanelClose = () => {
-    setDisplayInfoPanel(false);
-  }
+  const handleInfoPanelClose = () => setDisplayInfoPanel(false);
 
   return nbaTeamData.length ? (
     <div>
@@ -93,6 +87,7 @@ const App = () => {
         handleTeamClick={handleTeamClick}
         handleCitySort={handleCitySort}
         handlePagination={handlePagination}
+        disablePages={disablePages}
       />
       <InfoPanel
         displayPanel={displayInfoPanel}

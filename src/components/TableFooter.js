@@ -1,4 +1,5 @@
-export default function TableFooter({ page, range, handlePagination }) {
+export default function TableFooter({ page, range, handlePagination, disablePages }) {
+  if (disablePages) return null;
   return (
     <div className='table-footer'>
       {range.map(pageNumber => {
@@ -6,7 +7,8 @@ export default function TableFooter({ page, range, handlePagination }) {
           <button
             key={pageNumber}
             onClick={() => handlePagination(pageNumber)}
-            className={page === pageNumber ? 'active' : ''}
+            className="page-btn"
+            disabled={page === pageNumber}
           >
             {pageNumber}
           </button>

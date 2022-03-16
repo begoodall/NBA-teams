@@ -1,11 +1,9 @@
-import { useState } from 'react';
-
 import TableFooter from './TableFooter';
 import Table from "react-bootstrap/Table";
 import Team from "./Team";
 import Caret from './Caret';
 
-export default function TeamsList({ teams, citySortAlphabetical, page, handleTeamClick, handleCitySort, handlePagination }) {
+export default function TeamsList({ teams, citySortAlphabetical, page, handleTeamClick, handleCitySort, handlePagination, disablePages }) {
   return (
     <section>
       <Table borderless hover>
@@ -36,9 +34,8 @@ export default function TeamsList({ teams, citySortAlphabetical, page, handleTea
         page={page}
         range={[1, 2, 3, 4, 5]}
         handlePagination={handlePagination}
+        disablePages={disablePages}
       />
     </section>
   );
-
-
 }
