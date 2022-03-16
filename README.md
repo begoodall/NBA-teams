@@ -1,5 +1,6 @@
 ## Deployed Link to Project:
-[http://52.53.209.15/](http://52.53.209.15/) to view it in your browser.
+[http://52.53.209.15/](http://52.53.209.15/)
+Deployed using AWS.
 
 ## Scripts
 
